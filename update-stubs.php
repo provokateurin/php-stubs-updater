@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 include __DIR__ . '/vendor/autoload.php';
 
+use PhpParser\Node\Expr\Include_;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -43,6 +44,12 @@ function generateStub(array &$expectedStubs, string $dir, PrettyPrinter $prettyP
 		} else {
 			$subStmt->stmts = [];
 			$stmt->stmts[$i] = $subStmt;
+		}
+	}
+
+	foreach ($newStmts as $i => $newStmt) {
+		if ($newStmt instanceof Stmt\Expression && $newStmt->expr instanceof Include_) {
+			unset($newStmts[$i]);
 		}
 	}
 
