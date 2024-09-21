@@ -1,7 +1,8 @@
 {
   "version": "0.0.1",
   "require": {
-    "nikic/php-parser": "^5.1"
+    "nikic/php-parser": "^5.1",
+    "ext-simplexml": "*"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest"
